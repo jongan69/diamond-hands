@@ -5,8 +5,11 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lockin Chat",
-  description: "Lock tf in",
+  title: "Diamond Hands",
+  description: "Diamond Hands",
+  icons: {
+    icon: "/logo.gif",
+  },
 };
 
 export default function RootLayout({
