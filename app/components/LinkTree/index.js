@@ -96,7 +96,7 @@ export default function LinkTree() {
             <h2 className='text-2xl font-bold text-white'>Why Diamond Hands?</h2>
             <p className='text-white mt-2'>
               Diamond hands represent the strength and resilience of holding onto valuable assets despite market volatility. 
-              It's about long-term vision and unwavering belief in the potential of your investments.
+              It&apos;s about long-term vision and unwavering belief in the potential of your investments.
             </p>
           </section>
 
