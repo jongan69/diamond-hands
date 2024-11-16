@@ -99,7 +99,7 @@ export default function LinkTree() {
           <br/>
           <p>Supply: {formatNumberWithSuffix(holderscan?.supply * 1000)} DHDANDS</p>
           <br />
-          <p className='text-right'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>
+          <p className='text-center'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>
           <br />
           <h1 className='text-center text-4xl font-bold animate-glow 
              text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
