@@ -91,6 +91,15 @@ export default function LinkTree() {
         <br />
         <div className='text-center text-xl bg-slate-800 p-4 mb-4 rounded'>
           <Header picture={"./logo.gif"} title='DHANDS' subtitle={'DIAMOND FUCKING HANDS 💎'} />
+          <br />
+          <section className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-6 rounded-lg shadow-lg mb-4'>
+            <h2 className='text-2xl font-bold text-white'>Why Diamond Hands?</h2>
+            <p className='text-white mt-2'>
+              Diamond hands represent the strength and resilience of holding onto valuable assets despite market volatility. 
+              It's about long-term vision and unwavering belief in the potential of your investments.
+            </p>
+          </section>
+
           <p>Total Diamond Handlers: {holderscan?.currentHolders.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
           <p>Total Jeets: {holderdata?.RetardedAssJeetFaggots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
           <p>Holders Over 10 USD: {holderscan?.holdersOver10USD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
