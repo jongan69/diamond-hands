@@ -49,14 +49,48 @@ export default function DiamondHandsOverlay() {
   };
 
   return (
-    <div className="diamond-hands-overlay">
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
+    <div className="diamond-hands-overlay" style={styles.container}>
+      <input type="file" accept="image/*" onChange={handleImageUpload} style={styles.input} />
       {image && (
-        <div className="image-container">
-          <canvas ref={canvasRef} style={{ width: '100%' }} />
-          <button onClick={downloadImage}>Download Image</button>
+        <div className="image-container" style={styles.imageContainer}>
+          <canvas ref={canvasRef} style={styles.canvas} />
+          <button onClick={downloadImage} style={styles.button}>Download Image</button>
         </div>
       )}
     </div>
   );
-} 
+}
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '1rem',
+    maxWidth: '100%',
+  },
+  input: {
+    marginBottom: '1rem',
+    width: '100%',
+    maxWidth: '300px',
+  },
+  imageContainer: {
+    position: 'relative',
+    width: '100%',
+    maxWidth: '500px',
+  },
+  canvas: {
+    width: '100%',
+    height: 'auto',
+  },
+  button: {
+    marginTop: '1rem',
+    padding: '0.5rem 1rem',
+    fontSize: '1rem',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+}; 
