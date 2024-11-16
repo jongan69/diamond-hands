@@ -30,13 +30,13 @@ function formatNumberWithSuffix(number) {
 }
 
 // Logos
-const trading = require('../../images/trade.svg');
+// const trading = require('../../images/trade.svg');
 const bonkLogo = require('../../images/bonk.svg');
 const moonLogo = require('../../images/moon.svg');
 const logo = require('../../images/logo.gif');
 const rayLogo = require('../../images/raydium.svg');
 const dexLogo = require('../../images/dexscreener.png');
-const bagsLogo = require('../../images/bags.png');
+const bagsLogo = require('../../images/bags.jpg');
 const twitterLogo = require('../../images/twitter.svg');
 
 export default function LinkTree() {
@@ -124,7 +124,7 @@ export default function LinkTree() {
         
         <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.discordColor} />
         <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.discordColor} />
-        <Button link={`bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
+        <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.discordColor} />
         <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.discordColor} />
         <Button link={`https://t.me/bonkbot_bot?start=ref_jyzn2_ca_${CA}`} icon={<Image src={bonkLogo} alt="Bonk" height={h} />} name='Bonk Buy' backgroundcolor={variables.discordColor} />
