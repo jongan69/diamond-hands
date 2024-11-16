@@ -7,6 +7,7 @@ import variables from '../../variables';
 import Header from '../Header';
 import { Canvas } from '@react-three/fiber';
 import RainingLockersBackground from '../Three/RainingLockins';
+import DiamondHandsOverlay from '../DiamondHandsOverlay';
 
 const CA = "2kBzHjLgm9rwrbZikLk1dkx1Bt56Spc4cjdYH8Hh89Em"
 
@@ -99,7 +100,16 @@ export default function LinkTree() {
           <p>Supply: {formatNumberWithSuffix(holderscan?.supply * 1000)} DHDANDS</p>
           <br />
           <p className='text-right'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>
+          <br />
+          <h1 className='text-center text-4xl font-bold animate-glow 
+             text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
+             [text-shadow:_0_0_10px_rgb(255_255_255_/_40%)]'>
+            Diamond Hands PFP Generator
+          </h1>
+          <br />
+          <DiamondHandsOverlay />
         </div>
+       
         <br />
         
         <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.discordColor} />
@@ -110,6 +120,8 @@ export default function LinkTree() {
                 icon={<Image src={logo} alt="Official Site" height={h} unoptimized />} 
                 name='Official Site' 
                 backgroundcolor={variables.discordColor} />
+        
+ 
       </Container>
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
         <Canvas>
