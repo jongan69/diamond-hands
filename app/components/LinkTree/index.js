@@ -15,7 +15,7 @@ function formatNumberWithSuffix(number) {
   if (number === undefined || number === null) {
     return 'N/A';
   }
-  
+
   const num = parseFloat(number);
   if (num >= 1e15) {
     return (num / 1e15).toFixed(2) + 'M';
@@ -27,6 +27,16 @@ function formatNumberWithSuffix(number) {
     return (num / 1e3).toFixed(2) + '';
   }
   return num.toFixed(2);
+}
+
+function getLargerNumber(num1, num2) {
+  if (num1 === undefined || num1 === null) {
+    return num2;
+  }
+  if (num2 === undefined || num2 === null) {
+    return num1;
+  }
+  return num1 > num2 ? num1 : num2;
 }
 
 // Logos
@@ -47,27 +57,27 @@ export default function LinkTree() {
   const [holderscan, setHolderScan] = useState();
 
   async function fetchData() {
-    const pricedata = await fetch('/api/price', { 
-      cache: 'no-store', 
-      method: 'POST', 
+    const pricedata = await fetch('/api/price', {
+      cache: 'no-store',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mint: CA })
     }).then(data => data.json());
 
-    const heliusholderdata = await fetch('/api/heliusmarketdata', { 
-      cache: 'no-store', 
-      method: 'POST', 
+    const heliusholderdata = await fetch('/api/heliusmarketdata', {
+      cache: 'no-store',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mint: CA })
     }).then(data => data.json());
 
     const holderscandata = await fetch('/api/holderscan', {
-      cache: 'no-store', 
-      method: 'POST', 
+      cache: 'no-store',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ mint: CA })
     }).then(data => data.json());
-    
+
     setJupPriceData(pricedata);
     setHolderData(heliusholderdata);
     setHolderScan(holderscandata);
@@ -96,20 +106,20 @@ export default function LinkTree() {
           <section className='bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-6 rounded-lg shadow-lg mb-4'>
             <h2 className='text-2xl font-bold text-white'>Why Diamond Hands?</h2>
             <p className='text-white mt-2'>
-              Diamond hands represent the strength and resilience of holding onto valuable assets despite market volatility. 
+              Diamond hands represent the strength and resilience of holding onto valuable assets despite market volatility.
               It&apos;s about long-term vision and unwavering belief in the potential of your investments.
             </p>
           </section>
 
-          <p>Total Diamond Handlers: {holderscan?.currentHolders.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-          <p>Total Jeets: {holderdata?.RetardedAssJeetFaggots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-          <p>Holders Over 10 USD: {holderscan?.holdersOver10USD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-          <br/>
-          <p>MarketCap: ${holderscan?.marketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-          <br/>
-          <p>Supply: {formatNumberWithSuffix(holderscan?.supply * 1000)} DHDANDS</p>
+          <p>Total Diamond Handlers: {getLargerNumber(holderscan?.currentHolder, holderdata?.totalHolders)}</p>
+          {holderdata?.RetardedAssJeetFaggots && <p>Total Jeets: {holderdata?.RetardedAssJeetFaggots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
+          {holderscan?.holdersOver10USD && <p>Holders Over 10 USD: {holderscan?.holdersOver10USD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
           <br />
-          <p className='text-center'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>
+          {holderscan?.marketCap && <p>MarketCap: ${holderscan?.marketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
+          <br />
+          {holderscan?.supply && <p>Supply: {formatNumberWithSuffix(holderscan?.supply * 1000)} DHDANDS</p>}
+          <br />
+          {juppricedata && <p className='text-center'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>}
           <br />
           <h1 className='text-center text-4xl font-bold animate-glow 
              text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
@@ -119,25 +129,25 @@ export default function LinkTree() {
           <br />
           <DiamondHandsOverlay />
         </div>
-       
+
         <br />
-        
+
         <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.discordColor} />
         <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.discordColor} />
         <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.discordColor} />
         <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.discordColor} />
         <Button link={`https://t.me/bonkbot_bot?start=ref_jyzn2_ca_${CA}`} icon={<Image src={bonkLogo} alt="Bonk" height={h} />} name='Bonk Buy' backgroundcolor={variables.discordColor} />
-        <Button link="http://yourdiamondhands.com" 
-                icon={<Image src={logo} alt="Official Site" height={h} unoptimized />} 
-                name='Official Site' 
-                backgroundcolor={variables.discordColor} />
-        
- 
+        <Button link="http://yourdiamondhands.com"
+          icon={<Image src={logo} alt="Official Site" height={h} unoptimized />}
+          name='Official Site'
+          backgroundcolor={variables.discordColor} />
+
+
       </Container>
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
         <Canvas>
-          <RainingLockersBackground holders={holderdata?.totalHolders}/>
+          <RainingLockersBackground holders={holderdata?.totalHolders} />
         </Canvas>
       </div>
     </Suspense>

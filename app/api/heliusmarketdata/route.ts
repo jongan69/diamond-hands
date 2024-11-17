@@ -70,7 +70,11 @@ export async function POST(request: NextRequest) {
         const totalHolders = allOwners.size;
         const totalEmptyWallets = emptyWallets.size;
 
-        return NextResponse.json({ totalHolders, RetardedAssJeetFaggots: totalEmptyWallets });
+        if (totalHolders) {
+            return NextResponse.json({ totalHolders, RetardedAssJeetFaggots: totalEmptyWallets });
+        } else {
+            return NextResponse.json({ error: 'failed to load data' });
+        }
     } catch (error: any) {
         console.error(`Error fetching token accounts: ${error}`);
         return NextResponse.json({ error: 'failed to load data' });

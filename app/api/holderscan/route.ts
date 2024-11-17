@@ -15,7 +15,12 @@ export async function POST(
         const marketCapOverHolders = response?.data?.marketCapOverHolders;
         const holdersOver10USD = response?.data?.holdersOver10USD;
         // console.log(currentHolders)
-        return Response.json({ currentHolders, supply, marketCap, marketCapOverHolders, holdersOver10USD });
+        if (currentHolders) {
+            return Response.json({ currentHolders, supply, marketCap, marketCapOverHolders, holdersOver10USD });
+        } else {
+            console.log(response)
+            return Response.json({ error: 'failed to load data' })
+        }
     } catch (error: any) {
         console.error(`Error fetching price data: ${error}`);
         return Response.json({ error: 'failed to load data' })
