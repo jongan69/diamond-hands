@@ -18,7 +18,7 @@ export async function POST(
         if (currentHolders) {
             return Response.json({ currentHolders, supply, marketCap, marketCapOverHolders, holdersOver10USD });
         } else {
-            console.log(response)
+            // console.log(response)
             return Response.json({ error: 'failed to load data' })
         }
     } catch (error: any) {
