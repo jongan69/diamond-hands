@@ -48,6 +48,7 @@ const rayLogo = require('../../images/raydium.svg');
 const dexLogo = require('../../images/dexscreener.png');
 const bagsLogo = require('../../images/bags.jpg');
 const twitterLogo = require('../../images/twitter.svg');
+const coinGeckoLogo = require('../../images/coingecko.svg');
 
 export default function LinkTree() {
   const [juppricedata, setJupPriceData] = useState();
@@ -137,10 +138,11 @@ export default function LinkTree() {
         <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.discordColor} />
         <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.discordColor} />
+        <Button link={`https://www.coingecko.com/en/coins/diamond-hands-2`} icon={<Image src={coinGeckoLogo} height={h} alt="CoinGecko" />} name='' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://t.me/bonkbot_bot?start=ref_jyzn2_ca_${CA}`} icon={<Image src={bonkLogo} alt="Bonk" height={h} />} name='Bonk Buy' backgroundcolor={variables.discordColor} />
         <Button link="http://yourdiamondhands.com"
-          icon={<Image src={logo} alt="Official Site" height={h} unoptimized />}
-          name='Official Site'
+          icon={<Image src={logo} alt="OG Site" height={h} unoptimized />}
+          name='OG Site'
           backgroundcolor={variables.discordColor} />
 
 

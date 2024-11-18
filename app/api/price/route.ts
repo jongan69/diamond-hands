@@ -9,7 +9,7 @@ export async function POST(
     try {
         const response = await fetch(url, { cache: 'no-store' })
             .then(res => res.json())
-        console.log(response)
+        // console.log(response)
         const price = response.data[mintAddress].price;
         if (price) {
             return Response.json({ price, uiFormmatted: `$${price.toFixed(3)}`});
