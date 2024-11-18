@@ -56,6 +56,7 @@ export default function LinkTree() {
   // const [oxpricedata, setOxPriceData] = useState();
   const [holderdata, setHolderData] = useState();
   const [holderscan, setHolderScan] = useState();
+  const [isCopied, setIsCopied] = useState(false);
 
   async function fetchData() {
     const pricedata = await fetch('/api/price', {
@@ -97,6 +98,13 @@ export default function LinkTree() {
     return <h2>🌀 Loading...</h2>;
   }
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(CA).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
+
   return (
     <Suspense fallback={<Loading />}>
       <Container>
@@ -122,6 +130,18 @@ export default function LinkTree() {
           <br />
           {juppricedata && <p className='text-center'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>}
           <br />
+
+          {/* New CA Display and Copy Button */}
+          <div className='flex justify-center items-center mb-4'>
+            <p className='mr-2'>CA: {CA.slice(0, 4)}...{CA.slice(-4)}</p>
+            <button 
+              onClick={copyToClipboard} 
+              className={`p-2 bg-blue-500 text-white rounded ${isCopied ? 'animate-bounce' : ''}`}
+            >
+              {isCopied ? 'Copied!' : 'Copy CA'}
+            </button>
+          </div>
+
           <h1 className='text-center text-4xl font-bold animate-glow 
              text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]
              [text-shadow:_0_0_10px_rgb(255_255_255_/_40%)]'>
