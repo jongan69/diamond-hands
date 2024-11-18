@@ -19,7 +19,6 @@ if (!APIFRAME_API_KEY || !MONGODB_URI) {
 }
 
 const client = new ApiframeClient(APIFRAME_API_KEY, true);
-mongoose.connect(MONGODB_URI);
 
 // Define the task schema
 const taskSchema: Schema = new Schema({
@@ -36,7 +35,16 @@ const Task: Model<ITask> = mongoose.models.Task || mongoose.model<ITask>('Task',
 // Initialize MongoDB connection
 const initMongoDB = async () => {
   if (mongoose.connection.readyState === 0) {
-    await mongoose.connect(MONGODB_URI);
+    try {
+      await mongoose.connect(MONGODB_URI, {
+        serverSelectionTimeoutMS: 5000, // Adjust the timeout as needed
+        socketTimeoutMS: 45000, // Adjust the socket timeout as needed
+      });
+      console.log('Connected to MongoDB');
+    } catch (error) {
+      console.error('Error connecting to MongoDB:', error);
+      throw error;
+    }
   }
 };
 
