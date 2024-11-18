@@ -34,9 +34,8 @@ const Task: Model<ITask> = mongoose.models.Task || mongoose.model<ITask>('Task',
 
 // Initialize MongoDB connection
 const initMongoDB = async () => {
-  if (mongoose.connection.readyState === 0) {
     try {
-      await mongoose.connect(MONGODB_URI, {
+     mongoose.connect(MONGODB_URI, {
         serverSelectionTimeoutMS: 5000, // Adjust the timeout as needed
         socketTimeoutMS: 45000, // Adjust the socket timeout as needed
       });
@@ -45,7 +44,6 @@ const initMongoDB = async () => {
       console.error('Error connecting to MongoDB:', error);
       throw error;
     }
-  }
 };
 
 // Function to enqueue a blend task
