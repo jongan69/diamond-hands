@@ -3,12 +3,12 @@ import React, { useState, useRef, useEffect } from 'react';
 export default function DiamondHandsOverlay() {
   const [userImage, setUserImage] = useState(null);
   const [originalImageUrl, setOriginalImageUrl] = useState(null);
-  const [imageWithoutBackground, setImageWithoutBackground] = useState(null);
   const [blendedImages, setBlendedImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [credits, setCredits] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState({ r: 255, g: 255, b: 255 }); // Default to white
+  const [backgroundColor, setBackgroundColor] = useState({ r: 255, g: 255, b: 255 });
+  const [taskStatus, setTaskStatus] = useState(null);
   const canvasRef = useRef(null);
   const overlayTransparentImageUrl = 'https://res.cloudinary.com/dro7c1ps1/image/upload/v1731935182/pkl3j5unhavhpzrhazbh.png';
 
@@ -59,7 +59,7 @@ export default function DiamondHandsOverlay() {
     img.onload = () => {
       canvas.width = img.width;
       canvas.height = img.height;
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0);
     };
   };
@@ -75,10 +75,9 @@ export default function DiamondHandsOverlay() {
     const pixel = ctx.getImageData(x, y, 1, 1).data;
     setBackgroundColor({ r: pixel[0], g: pixel[1], b: pixel[2] });
 
-    // Highlight the selected color on the canvas
     ctx.fillStyle = `rgba(${pixel[0]}, ${pixel[1]}, ${pixel[2]}, 0.5)`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(new Image(), 0, 0); // Redraw the image to keep it visible
+    ctx.drawImage(new Image(), 0, 0);
   };
 
   const removeBackground = () => {
@@ -88,7 +87,7 @@ export default function DiamondHandsOverlay() {
     const data = imageData.data;
 
     const { r, g, b } = backgroundColor;
-    const threshold = 30; // Adjusted tolerance level for better accuracy
+    const threshold = 30;
 
     for (let i = 0; i < data.length; i += 4) {
       const red = data[i];
@@ -96,12 +95,11 @@ export default function DiamondHandsOverlay() {
       const blue = data[i + 2];
 
       if (Math.abs(red - r) < threshold && Math.abs(green - g) < threshold && Math.abs(blue - b) < threshold) {
-        data[i + 3] = 0; // Set alpha to 0 (transparent)
+        data[i + 3] = 0;
       }
     }
 
     ctx.putImageData(imageData, 0, 0);
-    setImageWithoutBackground(canvas.toDataURL());
   };
 
   const uploadOriginalImageToCloudinary = async (file) => {
@@ -115,7 +113,7 @@ export default function DiamondHandsOverlay() {
       });
 
       const data = await response.json();
-      setOriginalImageUrl(data.secure_url); // Store Cloudinary URL for the original image
+      setOriginalImageUrl(data.secure_url);
     } catch (error) {
       console.error("Error uploading original image to Cloudinary:", error);
       alert("An error occurred while uploading the original image.");
@@ -153,8 +151,8 @@ export default function DiamondHandsOverlay() {
     }
 
     setIsLoading(true);
+    setTaskStatus('processing');
 
-    // Remove background and upload transparent image
     removeBackground();
     const canvas = canvasRef.current;
     canvas.toBlob(async (blob) => {
@@ -170,27 +168,50 @@ export default function DiamondHandsOverlay() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              userImageUrl: originalImageUrl, // Use Cloudinary URL for the original image
+              userImageUrl: originalImageUrl,
               transparentImageUrl,
               overlayImageUrl: overlayTransparentImageUrl,
             }),
           });
 
           const data = await response.json();
-          if (data.image_urls) {
-            setBlendedImages(data.image_urls);
-            setSelectedImage(data.image_urls[0]); // Default to the first image
+          if (data.taskId) {
+            pollTaskStatus(data.taskId);
           } else {
-            alert("Failed to blend images.");
+            alert("Failed to start blending task.");
+            setIsLoading(false);
           }
         } catch (error) {
-          console.error("Error blending images:", error);
-          alert("An error occurred while blending images.");
-        } finally {
+          console.error("Error starting blend task:", error);
+          alert("An error occurred while starting the blend task.");
           setIsLoading(false);
         }
       }
     }, 'image/png');
+  };
+
+  const pollTaskStatus = async (taskId) => {
+    try {
+      const response = await fetch(`/api/taskStatus?taskId=${taskId}`);
+      const data = await response.json();
+      setTaskStatus(data.status.status);
+      if (data.status.status === 'finished') {
+        setTaskStatus('finished');
+        setBlendedImages(data.status.image_urls);
+        setSelectedImage(data.status.image_urls[0]);
+        setIsLoading(false);
+      } else if (data.status.status === 'failed') {
+        setTaskStatus('failed');
+        alert('Image processing failed.');
+        setIsLoading(false);
+      } else {
+        setTimeout(() => pollTaskStatus(taskId), 5000);
+      }
+    } catch (error) {
+      console.error('Error polling task status:', error);
+      setTaskStatus('failed');
+      setIsLoading(false);
+    }
   };
 
   const selectImage = (url) => {
@@ -222,7 +243,7 @@ export default function DiamondHandsOverlay() {
         }} />
       </div>}
       {userImage && <button onClick={blendImages} style={styles.button} disabled={isLoading}>
-        {isLoading ? 'Blending...' : 'Blend with Overlay'}
+        {isLoading ? 'Blending Status : ' + taskStatus : 'Blend with Overlay'}
       </button>}
       {blendedImages.length > 0 && (
         <div className="image-container" style={styles.imageContainer}>
