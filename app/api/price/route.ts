@@ -10,9 +10,9 @@ export async function POST(
         const response = await fetch(url, { cache: 'no-store' })
             .then(res => res.json())
         // console.log(response)
-        const price = response.data[mintAddress].price;
+        const price = response?.data[mintAddress]?.price;
         if (price) {
-            return Response.json({ price, uiFormmatted: `$${price.toFixed(3)}`});
+            return Response.json({ price, uiFormmatted: `$${price?.toFixed(3)}`});
         } else {
             return Response.json({ error: 'failed to load data' })
         }
