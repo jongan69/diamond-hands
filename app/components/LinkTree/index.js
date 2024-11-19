@@ -121,14 +121,14 @@ export default function LinkTree() {
           </section>
 
           <p>Total Diamond Handlers: {getLargerNumber(holderscan?.currentHolder, holderdata?.totalHolders)}</p>
-          {holderdata?.RetardedAssJeetFaggots && <p>Total Jeets: {holderdata?.RetardedAssJeetFaggots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
-          {holderscan?.holdersOver10USD && <p>Holders Over 10 USD: {holderscan?.holdersOver10USD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
+          {holderdata?.RetardedAssJeetFaggots && <p>Total Jeets: {holderdata?.RetardedAssJeetFaggots?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
+          {holderscan?.holdersOver10USD && <p>Holders Over 10 USD: {holderscan?.holdersOver10USD?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
           <br />
-          {holderscan?.marketCap && <p>MarketCap: ${holderscan?.marketCap.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
+          {holderscan?.marketCap && <p>MarketCap: ${holderscan?.marketCap?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
           <br />
           {holderscan?.supply && <p>Supply: {formatNumberWithSuffix(holderscan?.supply * 1000)} DHDANDS</p>}
           <br />
-          {juppricedata && <p className='text-center'>Jupiter Price: ${juppricedata?.price.toFixed(6)}</p>}
+          {juppricedata?.price && <p className='text-center'>Jupiter Price: ${juppricedata?.price?.toFixed(6)}</p>}
           <br />
 
           {/* New CA Display and Copy Button */}
