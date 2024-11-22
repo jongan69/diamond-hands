@@ -49,6 +49,7 @@ const dexLogo = require('../../images/dexscreener.png');
 const bagsLogo = require('../../images/bags.jpg');
 const twitterLogo = require('../../images/twitter.svg');
 const coinGeckoLogo = require('../../images/coingecko.svg');
+const rugcheckLogo = require('../../images/rugcheck.jpg');
 
 export default function LinkTree() {
   const [juppricedata, setJupPriceData] = useState();
@@ -121,7 +122,7 @@ export default function LinkTree() {
           </section>
 
           <p>Total Diamond Handlers: {getLargerNumber(holderscan?.currentHolder, holderdata?.totalHolders)}</p>
-          {holderdata?.RetardedAssJeetFaggots && <p>Total Jeets: {holderdata?.RetardedAssJeetFaggots?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
+          {holderdata?.RetardedAssJeetFaggots && <p>Total Paper Hands: {holderdata?.RetardedAssJeetFaggots?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
           {holderscan?.holdersOver10USD && <p>Holders Over 10 USD: {holderscan?.holdersOver10USD?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
           <br />
           {holderscan?.marketCap && <p>MarketCap: ${holderscan?.marketCap?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>}
@@ -156,6 +157,7 @@ export default function LinkTree() {
         <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.discordColor} />
         <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.discordColor} />
         <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
+        <Button link={`https://rugcheck.xyz/tokens/${CA}`} icon={<Image src={solanaBeachLogo} height={h} alt="Rugcheck" />} name='Rugcheck' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.discordColor} />
         <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.discordColor} />
         <Button link={`https://www.coingecko.com/en/coins/diamond-hands-2`} icon={<Image src={coinGeckoLogo} height={h} alt="CoinGecko" />} name='' backgroundcolor={variables.whatsappColor} />
