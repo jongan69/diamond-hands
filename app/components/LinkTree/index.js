@@ -157,7 +157,7 @@ export default function LinkTree() {
         <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.discordColor} />
         <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.discordColor} />
         <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
-        <Button link={`https://rugcheck.xyz/tokens/${CA}`} icon={<Image src={solanaBeachLogo} height={h} alt="Rugcheck" />} name='Rugcheck' backgroundcolor={variables.whatsappColor} />
+        <Button link={`https://rugcheck.xyz/tokens/${CA}`} icon={<Image src={rugcheckLogo} height={h} alt="Rugcheck" />} name='Rugcheck' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.discordColor} />
         <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.discordColor} />
         <Button link={`https://www.coingecko.com/en/coins/diamond-hands-2`} icon={<Image src={coinGeckoLogo} height={h} alt="CoinGecko" />} name='' backgroundcolor={variables.whatsappColor} />
