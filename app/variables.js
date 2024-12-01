@@ -10,7 +10,10 @@ export default {
   linkedinColor: '#2867B2',
   twitterColor: '#1DA1F2',
   githubColor: '#24292e',
+  black: '#000',
   discordColor: '#4267B2',
+  telegramColor: '#0088cc',
+  yellow: '#FFD700',
   opt1Color: '#000',
   opt2Color: '#fff',
 }

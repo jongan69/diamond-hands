@@ -50,7 +50,8 @@ const bagsLogo = require('../../images/bags.jpg');
 const twitterLogo = require('../../images/twitter.svg');
 const coinGeckoLogo = require('../../images/coingecko.svg');
 const rugcheckLogo = require('../../images/rugcheck.jpg');
-
+const aboutLogo = require('../../images/memecoinszn.png');
+const telegramLogo = require('../../images/telegram.svg');
 export default function LinkTree() {
   const [juppricedata, setJupPriceData] = useState();
   // const [oxtickerdata, setOxTickerData] = useState();
@@ -135,8 +136,8 @@ export default function LinkTree() {
           {/* New CA Display and Copy Button */}
           <div className='flex justify-center items-center mb-4'>
             <p className='mr-2'>CA: {CA.slice(0, 4)}...{CA.slice(-4)}</p>
-            <button 
-              onClick={copyToClipboard} 
+            <button
+              onClick={copyToClipboard}
               className={`p-2 bg-blue-500 text-white rounded ${isCopied ? 'animate-bounce' : ''}`}
             >
               {isCopied ? 'Copied!' : 'Copy CA'}
@@ -154,19 +155,29 @@ export default function LinkTree() {
 
         <br />
 
-        <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.discordColor} />
-        <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.discordColor} />
+        <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.purple} />
+        <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.instagramColor} />
         <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://rugcheck.xyz/tokens/${CA}`} icon={<Image src={rugcheckLogo} height={h} alt="Rugcheck" />} name='Rugcheck' backgroundcolor={variables.whatsappColor} />
-        <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.discordColor} />
-        <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.discordColor} />
+        <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.twitterColor} />
+        <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.black} />
         <Button link={`https://www.coingecko.com/en/coins/diamond-hands-2`} icon={<Image src={coinGeckoLogo} height={h} alt="CoinGecko" />} name='' backgroundcolor={variables.whatsappColor} />
-        <Button link={`https://t.me/bonkbot_bot?start=ref_jyzn2_ca_${CA}`} icon={<Image src={bonkLogo} alt="Bonk" height={h} />} name='Bonk Buy' backgroundcolor={variables.discordColor} />
+        <Button link={`https://t.me/bonkbot_bot?start=ref_jyzn2_ca_${CA}`} icon={<Image src={bonkLogo} alt="Bonk" height={h} />} name='Bonk Buy' backgroundcolor={variables.yellow} />
+        
+        <Button link="https://t.me/DhandsCTO"
+          icon={<Image src={telegramLogo} alt="Telegram" height={h} unoptimized />}
+          name='Telegram'
+          backgroundcolor={variables.telegramColor} />
+
+        <Button link="https://memecoinseason.io/p/diamond-hands"
+          icon={<Image src={aboutLogo} alt="About" height={h} unoptimized />}
+          name='About'
+          backgroundcolor={variables.discordColor} />
+
         <Button link="http://yourdiamondhands.com"
           icon={<Image src={logo} alt="OG Site" height={h} unoptimized />}
           name='OG Site'
           backgroundcolor={variables.discordColor} />
-
 
       </Container>
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
