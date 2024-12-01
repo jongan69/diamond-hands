@@ -52,6 +52,9 @@ const coinGeckoLogo = require('../../images/coingecko.svg');
 const rugcheckLogo = require('../../images/rugcheck.jpg');
 const aboutLogo = require('../../images/memecoinszn.png');
 const telegramLogo = require('../../images/telegram.svg');
+const autosnipeLogo = require('../../images/autosnipe.png');
+const photonLogo = require('../../images/photon.jpg');
+
 export default function LinkTree() {
   const [juppricedata, setJupPriceData] = useState();
   // const [oxtickerdata, setOxTickerData] = useState();
@@ -163,7 +166,9 @@ export default function LinkTree() {
         <Button link={`https://dexscreener.com/solana/${CA}`} icon={<Image src={dexLogo} height={h} alt="DEXSCREENER" />} name='DEXSCREENER' backgroundcolor={variables.black} />
         <Button link={`https://www.coingecko.com/en/coins/diamond-hands-2`} icon={<Image src={coinGeckoLogo} height={h} alt="CoinGecko" />} name='' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://t.me/bonkbot_bot?start=ref_jyzn2_ca_${CA}`} icon={<Image src={bonkLogo} alt="Bonk" height={h} />} name='Bonk Buy' backgroundcolor={variables.yellow} />
-        
+        <Button link={`https://autosnipe.ai/details/${CA}/?referral_code=lockin`} icon={<Image src={autosnipeLogo} alt="Autosnipe" height={h} />} name='Autosnipe' backgroundcolor={variables.whatsappColor} />
+        <Button link={`https://photon-sol.tinyastro.io/en/r/@jongan69/${CA}`} icon={<Image src={photonLogo} alt="Photon" height={h} />} name='Photon' backgroundcolor={variables.whatsappColor} />
+
         <Button link="https://t.me/DhandsCTO"
           icon={<Image src={telegramLogo} alt="Telegram" height={h} unoptimized />}
           name='Telegram'
