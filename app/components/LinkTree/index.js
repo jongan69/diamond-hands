@@ -54,6 +54,7 @@ const aboutLogo = require('../../images/memecoinszn.png');
 const telegramLogo = require('../../images/telegram.svg');
 const autosnipeLogo = require('../../images/autosnipe.png');
 const photonLogo = require('../../images/photon.jpg');
+const meteoraLogo = require('../../images/meteora.jpg');
 
 export default function LinkTree() {
   const [juppricedata, setJupPriceData] = useState();
@@ -160,6 +161,7 @@ export default function LinkTree() {
 
         <Button link='https://moonshot.money/xfphu3qrmzIHAq82GJ0jp3Uv?ref=vtsmoh24uf' icon={<Image src={moonLogo} height={h} alt="Moonshot" />} name='Moonshot' backgroundcolor={variables.purple} />
         <Button link={`https://raydium.io/swap/?inputMint=sol&outputMint=${CA}&referrer=9yA9LPCRv8p8V8ZvJVYErrVGWbwqAirotDTQ8evRxE5N`} icon={<Image src={rayLogo} height={h} alt="Raydium" />} name='Raydium' backgroundcolor={variables.instagramColor} />
+        <Button link={`https://m3m3.meteora.ag/farms/3ZUeVMmg8Z57VNW4es3JbvEE9ZMexCuUQbfYWR2dNZQ1`} icon={<Image src={meteoraLogo} height={h} alt="Dhands Staking" />} name='Dhands Staking' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://bags.fm/b/$DHANDS`} icon={<Image src={bagsLogo} height={h} alt="Bags" />} name='Bags' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://rugcheck.xyz/tokens/${CA}`} icon={<Image src={rugcheckLogo} height={h} alt="Rugcheck" />} name='Rugcheck' backgroundcolor={variables.whatsappColor} />
         <Button link={`https://x.com/i/communities/1855723540701753377`} icon={<Image src={twitterLogo} height={h} alt="Twitter" />} name='Twitter' backgroundcolor={variables.twitterColor} />
