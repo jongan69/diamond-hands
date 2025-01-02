@@ -8,6 +8,7 @@ import Header from '../Header';
 import { Canvas } from '@react-three/fiber';
 import RainingLockersBackground from '../Three/RainingLockins';
 import DiamondHandsOverlay from '../DiamondHandsOverlay';
+import { isWebGLAvailable } from '../../utils/checkWebGL';
 
 const CA = "2kBzHjLgm9rwrbZikLk1dkx1Bt56Spc4cjdYH8Hh89Em"
 
@@ -63,6 +64,11 @@ export default function LinkTree() {
   const [holderdata, setHolderData] = useState();
   const [holderscan, setHolderScan] = useState();
   const [isCopied, setIsCopied] = useState(false);
+  const [isWebGLSupported, setIsWebGLSupported] = useState(false);
+
+  useEffect(() => {
+    setIsWebGLSupported(isWebGLAvailable());
+  }, []);
 
   async function fetchData() {
     const pricedata = await fetch('/api/price', {
@@ -188,9 +194,9 @@ export default function LinkTree() {
 
       </Container>
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-        <Canvas>
+        {isWebGLSupported && <Canvas>
           <RainingLockersBackground holders={holderdata?.totalHolders} />
-        </Canvas>
+        </Canvas>}
       </div>
     </Suspense>
   );
